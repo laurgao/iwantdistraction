@@ -81,6 +81,10 @@ const Item = ({ el }: { el: { id: string; laurasList: string } }) => {
                         type="textarea"
                         value={content}
                         onChange={(e) => {
+                            if (!e.target) return;
+                            // @ts-ignore
+                            if (!(e.target.innerText instanceof String)) return;
+                            // @ts-ignore
                             setContent(e.target.innerText);
                             setIsSaved(false);
                         }}
