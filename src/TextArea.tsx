@@ -50,7 +50,7 @@ const TextArea = ({ id }: { id: string }) => {
                 }
             }}
         >
-            <Linkify options={{ className: `text-amber-500 underline` }}>{content}</Linkify>
+            <Linkify options={{ className: `underline hover:bg-amber-300 transition` }}>{content}</Linkify>
         </div>
     ) : (
         /* <Input type="date" value={date} setValue={setDate} className="my-8" /> */

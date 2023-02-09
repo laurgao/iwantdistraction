@@ -4,6 +4,11 @@
 @tailwind components;
 @tailwind utilities;
 
+pre {
+  white-space: pre-wrap;
+  font-family: inherit;
+}
+
 
 :root {
   font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
