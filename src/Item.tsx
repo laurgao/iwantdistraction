@@ -6,10 +6,9 @@ import { useInterval } from "./utils/hooks";
 import { waitForEl } from "./utils/utils";
 import YellowUnderline from "./YellowUnderline";
 
-// const TextArea = ({ content, setContent, id }: { content: string; setContent: Dispatch<SetStateAction<string>>; id: string }) => {
-const TextArea = ({ id, defaultContent }: { id: string; defaultContent: string }) => {
+const Item = ({ el }: { el: { id: string; laurasList: string } }) => {
     const LOCAL_STORAGE_KEY = "iwantdistraction";
-    const [content, setContent] = useState(localStorage.getItem(LOCAL_STORAGE_KEY + "." + id) || "");
+    const [content, setContent] = useState(localStorage.getItem(LOCAL_STORAGE_KEY + "." + el.id) || "");
     const [isEdit, setIsEdit] = useState(false);
     const [isSaved, setIsSaved] = useState(true);
     const canEdit = true;
@@ -34,24 +33,24 @@ const TextArea = ({ id, defaultContent }: { id: string; defaultContent: string }
                 //     setIter(prevIter => prevIter + 1);
                 // });
             }
-            localStorage.setItem(LOCAL_STORAGE_KEY + "." + id, content);
+            localStorage.setItem(LOCAL_STORAGE_KEY + "." + el.id, content);
             setIsSaved(true);
         }
     }
 
     return (
         <div className="mb-6">
-            <div className="flex items-center mb-2">
+            <div className="flex items-center w-full mb-2">
                 <h3 className="text-stone-700 font-bold px-4 text-sm">
-                    shit worth <YellowUnderline>{id}</YellowUnderline>
+                    shit worth <YellowUnderline>{el.id}</YellowUnderline>
                 </h3>
                 <button
-                    className="ml-4 flex items-center gap-2 font-medium bg-stone-100 hover:bg-stone-200 active:bg-stone-300 transition rounded-md py-1 px-2 text-sm"
+                    className="ml-auto flex items-center gap-2 font-medium bg-stone-100 hover:bg-stone-200 active:bg-stone-300 transition rounded-md py-1 px-2 text-sm"
                     onClick={() => {
                         // navigator.clipboard.writeText(el.laurasList);
-                        setContent(defaultContent);
-                        const el = document.getElementById(`${id}-body`);
-                        el?.click();
+                        setContent(el.laurasList);
+                        const bodyText = document.getElementById(`${el.id}-body`);
+                        bodyText?.click();
                     }}
                 >
                     <LightBulbIcon width={16} />
@@ -66,11 +65,11 @@ const TextArea = ({ id, defaultContent }: { id: string; defaultContent: string }
                     onClick={() => {
                         if (canEdit) {
                             setIsEdit(true);
-                            waitForEl(`${id}-note-body`);
+                            waitForEl(`${el.id}-note-body`);
                             // toggleDisallowNShortcut(true);
                         }
                     }}
-                    id={`${id}-body`}
+                    id={`${el.id}-body`}
                 >
                     <Linkify options={{ className: `underline hover:bg-amber-300 transition` }}>{content || "Dump your brain..."}</Linkify>
                 </div>
@@ -85,7 +84,7 @@ const TextArea = ({ id, defaultContent }: { id: string; defaultContent: string }
                             setContent(e.target.innerText);
                             setIsSaved(false);
                         }}
-                        id={`${id}-note-body`}
+                        id={`${el.id}-note-body`}
                         className="ring-amber-300 focus:ring-4 focus:outline-none focus:border-stone-700 focus:border-2"
                         // placeholder={defaultContent}
                         placeholder="Dump your brain..."
@@ -94,7 +93,7 @@ const TextArea = ({ id, defaultContent }: { id: string; defaultContent: string }
                         }}
                     />
                     <div className="text-stone-400 text-xs flex items-center">
-                        {content === localStorage.getItem(LOCAL_STORAGE_KEY + "." + id) ? (
+                        {content === localStorage.getItem(LOCAL_STORAGE_KEY + "." + el.id) ? (
                             <>
                                 <span className="leading-none">All changes updated</span>
                                 <CheckBadgeIcon className="w-4 h-4 ml-2" />
@@ -111,4 +110,4 @@ const TextArea = ({ id, defaultContent }: { id: string; defaultContent: string }
     );
 };
 
-export default TextArea;
+export default Item;
