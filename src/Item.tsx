@@ -12,6 +12,7 @@ const Item = ({ el }: { el: { id: string; laurasList: string } }) => {
     const [isEdit, setIsEdit] = useState(false);
     const [isSaved, setIsSaved] = useState(true);
     const canEdit = true;
+    const placeholder = "Dump your brain..."; // enter links...
 
     function onSetIsNotEdit() {
         // Always call this function when want to call `setIsEdit(false)`
@@ -44,18 +45,20 @@ const Item = ({ el }: { el: { id: string; laurasList: string } }) => {
                 <h3 className="text-stone-700 font-bold px-4 text-sm">
                     shit worth <YellowUnderline>{el.id}</YellowUnderline>
                 </h3>
-                <button
-                    className="ml-auto flex items-center gap-2 font-medium bg-stone-100 hover:bg-stone-200 active:bg-stone-300 transition rounded-md py-1 px-2 text-sm"
-                    onClick={() => {
-                        // navigator.clipboard.writeText(el.laurasList);
-                        setContent(el.laurasList);
-                        const bodyText = document.getElementById(`${el.id}-body`);
-                        bodyText?.click();
-                    }}
-                >
-                    <LightBulbIcon width={16} />
-                    <span>Laura's list</span>
-                </button>
+                {!content && (
+                    <button
+                        className="ml-auto flex items-center gap-2 font-medium bg-stone-100 hover:bg-stone-200 active:bg-stone-300 transition rounded-md py-1 px-2 text-sm"
+                        onClick={() => {
+                            // navigator.clipboard.writeText(el.laurasList);
+                            setContent(el.laurasList);
+                            const bodyText = document.getElementById(`${el.id}-body`);
+                            bodyText?.click();
+                        }}
+                    >
+                        <LightBulbIcon width={16} />
+                        <span>Laura's list</span>
+                    </button>
+                )}
             </div>
             {!isEdit ? (
                 <div
@@ -71,7 +74,7 @@ const Item = ({ el }: { el: { id: string; laurasList: string } }) => {
                     }}
                     id={`${el.id}-body`}
                 >
-                    <Linkify options={{ className: `underline hover:bg-amber-300 transition` }}>{content || "Dump your brain..."}</Linkify>
+                    <Linkify options={{ className: `underline hover:bg-amber-300 transition` }}>{content || placeholder}</Linkify>
                 </div>
             ) : (
                 /* <Input type="date" value={date} setValue={setDate} className="my-8" /> */
@@ -91,7 +94,7 @@ const Item = ({ el }: { el: { id: string; laurasList: string } }) => {
                         id={`${el.id}-note-body`}
                         className="ring-amber-300 focus:ring-4 focus:outline-none focus:border-stone-700 focus:border-2"
                         // placeholder={defaultContent}
-                        placeholder="Dump your brain..."
+                        placeholder={placeholder}
                         onKeyDown={(e) => {
                             if (e.key === "Escape") onSetIsNotEdit();
                         }}
