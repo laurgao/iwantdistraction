@@ -24,7 +24,7 @@ function App() {
             </header>
             {shit.map((el) => (
                 <div className="mb-6">
-                    <h3 className="text-stone-700 font-bold px-4">
+                    <h3 className="text-stone-700 font-bold px-4 mb-4">
                         shit worth <YellowUnderline>{el}</YellowUnderline>
                     </h3>
                     <TextArea id={el} />

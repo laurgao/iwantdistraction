@@ -39,8 +39,8 @@ const TextArea = ({ id }: { id: string }) => {
 
     return !isEdit ? (
         <div
-            className={`overflow-hidden break-words ${
-                canEdit && "cursor-pointer hover:bg-gray-50 p-4 rounded-md transition border border-transparent"
+            className={`overflow-hidden break-words text-stone-700 ${
+                canEdit && "cursor-pointer hover:bg-stone-50 p-4 rounded-md transition border border-transparent"
             }`}
             onClick={() => {
                 if (canEdit) {
@@ -64,12 +64,13 @@ const TextArea = ({ id }: { id: string }) => {
                     setIsSaved(false);
                 }}
                 id={`${id}-note-body`}
+                className="ring-amber-300 focus:ring-4 focus:outline-none focus:border-stone-700 focus:border-2"
                 placeholder="What were the most interesting events in today's news?"
                 onKeyDown={(e) => {
                     if (e.key === "Escape") onSetIsNotEdit();
                 }}
             />
-            <div className="text-gray-400 text-xs flex items-center">
+            <div className="text-stone-400 text-xs flex items-center">
                 {content === localStorage.getItem(LOCAL_STORAGE_KEY + "." + id) ? (
                     <>
                         <span className="leading-none">All changes updated</span>

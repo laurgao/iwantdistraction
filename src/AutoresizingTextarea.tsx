@@ -25,11 +25,11 @@ const AutoresizingTextarea = (props: Props) => {
     if (!style) style = { minHeight: rows * 30 };
 
     const paddingClass = "p-4";
-    const newClassName = className + " border rounded-md w-full my-2 text-gray-500 " + paddingClass;
+    const newClassName = className + " border rounded-md w-full my-2 text-stone-500 " + paddingClass;
     return (
         <div className="relative">
             <div {...newProps} style={style} className={newClassName} contentEditable onInput={handleChange} ref={ref} />
-            <div className={"absolute top-0 left-0 text-gray-400 " + paddingClass} style={{ zIndex: -10 }}>
+            <div className={"absolute top-0 left-0 text-stone-400 " + paddingClass} style={{ zIndex: -10 }}>
                 {!value && placeholder}
             </div>
         </div>
