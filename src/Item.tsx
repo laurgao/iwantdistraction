@@ -59,9 +59,9 @@ const Item = ({ el }: { el: { id: string; laurasList: string } }) => {
             </div>
             {!isEdit ? (
                 <div
-                    className={`overflow-hidden break-words text-stone-700 ${
+                    className={`overflow-hidden break-words ${
                         canEdit && "cursor-pointer hover:bg-stone-50 p-4 rounded-md transition border border-transparent"
-                    }  ${!content && "text-stone-400"}`}
+                    } ${content ? "text-stone-700" : "text-stone-400"}`}
                     onClick={() => {
                         if (canEdit) {
                             setIsEdit(true);
@@ -83,7 +83,7 @@ const Item = ({ el }: { el: { id: string; laurasList: string } }) => {
                         onChange={(e) => {
                             if (!e.target) return;
                             // @ts-ignore
-                            if (!(e.target.innerText instanceof String)) return;
+                            if (typeof "" !== typeof e.target.innerText) return;
                             // @ts-ignore
                             setContent(e.target.innerText);
                             setIsSaved(false);
