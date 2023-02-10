@@ -31,26 +31,42 @@ make this website into a chrome ext that shows up when i go to youtube`,
         },
     ];
     return (
-        <div className="max-w-4xl mx-auto p-4">
-            <header className="text-center px-4 mb-12 mt-12">
-                <h1 className="text-6xl mb-12">instead of youtube shorts</h1>
-                <p>
-                    Distractions are not caused by social media or by any "external trigger",{" "}
-                    <a href="https://fs.blog/knowledge-project-podcast/nir-eyal/" className="underline hover:bg-amber-300 transition">
-                        according to psychology writer Nir Eyal
-                    </a>
-                    . Distractions are caused by a desire from the inside to escape negative emotions — boredom, anxiety, stress, you name it.
-                    <br />
-                    <br />
-                    Time management requires pain management. Procrastination is the inability to deal with emotional discomfort.
-                    <br />
-                    <br />
-                    Still want to be distracted? Try indulging in these:
-                </p>
-            </header>
-            {shit.map((el) => (
-                <Item key={el.id} el={el} />
-            ))}
+        <div className="relative overflow-x-hidden">
+            <div className="font-semibold text-xs">
+                {/* feels kinda meaningless w/o scale o provide conex */}
+                {/* <p className="absolute right-8 top-8 text-amber-300">most braindead</p>
+                <p className="absolute right-8 bottom-8 text-white">least braindead</p> */}
+                {/* kinda ugly */}
+                {/* <pre className="overflow-whee absolute -ml-9 top-0 text-amber-300">{"braindead ".repeat(50)}</pre>
+                <pre className="overflow-whee absolute -ml-2 top-3 text-amber-300">{"braindead ".repeat(50)}</pre>
+                <pre className="overflow-whee absolute -ml-7 top-6 text-amber-300">{"braindead ".repeat(50)}</pre>
+                <pre className="overflow-whee absolute -ml-4 top-9 text-amber-300">{"braindead ".repeat(50)}</pre>
+                <pre className="overflow-whee absolute -ml-2 bottom-9 text-white">{"brainfresh ".repeat(50)}</pre>
+                <pre className="overflow-whee absolute -ml-9 bottom-6 text-white">{"brainfresh ".repeat(50)}</pre>
+                <pre className="overflow-whee absolute -ml-7 bottom-3 text-white">{"brainfresh ".repeat(50)}</pre>
+                <pre className="overflow-whee absolute -ml-4 bottom-0 text-white">{"brainfresh ".repeat(50)}</pre> */}
+            </div>
+            <div className="max-w-4xl mx-auto px-4 py-36">
+                <header className="text-center px-4 mb-12">
+                    <h1 className="text-6xl mb-12">instead of youtube shorts</h1>
+                    <p>
+                        distractions are not caused by social media or by any "external trigger",{" "}
+                        <a href="https://fs.blog/knowledge-project-podcast/nir-eyal/" className="underline hover:bg-amber-400 transition">
+                            according to psychology writer Nir Eyal
+                        </a>
+                        . distractions are caused by a desire from the inside to escape negative emotions — boredom, anxiety, stress, you name it.
+                        <br />
+                        <br />
+                        time management requires pain management. procrastination is the inability to deal with emotional discomfort.
+                        <br />
+                        <br />
+                        still want to be distracted? try indulging in these:
+                    </p>
+                </header>
+                {shit.map((el) => (
+                    <Item key={el.id} el={el} />
+                ))}
+            </div>
         </div>
     );
 }

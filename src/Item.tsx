@@ -12,7 +12,7 @@ const Item = ({ el }: { el: { id: string; laurasList: string } }) => {
     const [isEdit, setIsEdit] = useState(false);
     const [isSaved, setIsSaved] = useState(true);
     const canEdit = true;
-    const placeholder = "Dump your brain..."; // enter links...
+    const placeholder = "Dump your links...";
 
     function onSetIsNotEdit() {
         // Always call this function when want to call `setIsEdit(false)`
@@ -47,7 +47,8 @@ const Item = ({ el }: { el: { id: string; laurasList: string } }) => {
                 </h3>
                 {!content && (
                     <button
-                        className="ml-auto flex items-center gap-2 font-medium bg-stone-100 hover:bg-stone-200 active:bg-stone-300 transition rounded-md py-1 px-2 text-sm"
+                        className="ml-auto flex items-center gap-2 font-medium border-2 border-stone-900 border-opacity-70 hover:bg-stone-900 hover:bg-opacity-70 hover:border-transparent text-stone-900 hover:text-stone-100 text-opacity-70 transition rounded-md py-1 px-2 text-sm"
+                        // className="ml-auto flex items-center gap-2 font-medium bg-stone-900 bg-opacity-10 hover:bg-opacity-20 active:bg-opacity-40 text-stone-900 text-opacity-70 transition rounded-md py-1 px-2 text-sm"
                         onClick={() => {
                             // navigator.clipboard.writeText(el.laurasList);
                             setContent(el.laurasList);
@@ -56,15 +57,15 @@ const Item = ({ el }: { el: { id: string; laurasList: string } }) => {
                         }}
                     >
                         <LightBulbIcon width={16} />
-                        <span>Laura's list</span>
+                        <span>laura's list</span>
                     </button>
                 )}
             </div>
             {!isEdit ? (
                 <div
                     className={`overflow-hidden break-words ${
-                        canEdit && "cursor-pointer hover:bg-stone-50 p-4 rounded-md transition border border-transparent"
-                    } ${content ? "text-stone-700" : "text-stone-400"}`}
+                        canEdit && "cursor-pointer hover:bg-stone-900 hover:bg-opacity-5 p-4 rounded-md transition border border-transparent"
+                    }`}
                     onClick={() => {
                         if (canEdit) {
                             setIsEdit(true);
@@ -74,7 +75,9 @@ const Item = ({ el }: { el: { id: string; laurasList: string } }) => {
                     }}
                     id={`${el.id}-body`}
                 >
-                    <Linkify options={{ className: `underline hover:bg-amber-300 transition` }}>{content || placeholder}</Linkify>
+                    <div className={content ? "text-stone-900 text-opacity-70" : "text-stone-900 text-opacity-40"}>
+                        <Linkify options={{ className: `underline hover:bg-amber-400 transition` }}>{content || placeholder}</Linkify>
+                    </div>
                 </div>
             ) : (
                 /* <Input type="date" value={date} setValue={setDate} className="my-8" /> */
@@ -92,14 +95,14 @@ const Item = ({ el }: { el: { id: string; laurasList: string } }) => {
                             setIsSaved(false);
                         }}
                         id={`${el.id}-note-body`}
-                        className="ring-amber-300 focus:ring-4 focus:outline-none focus:border-stone-700 focus:border-2"
+                        className="ring-amber-400 focus:ring-4 focus:outline-none focus:border-black border-opacity-70 focus:border-2"
                         // placeholder={defaultContent}
                         placeholder={placeholder}
                         onKeyDown={(e) => {
                             if (e.key === "Escape") onSetIsNotEdit();
                         }}
                     />
-                    <div className="text-stone-400 text-xs flex items-center">
+                    <div className="opacity-40 text-xs flex items-center">
                         {content === localStorage.getItem(LOCAL_STORAGE_KEY + "." + el.id) ? (
                             <>
                                 <span className="leading-none">All changes updated</span>

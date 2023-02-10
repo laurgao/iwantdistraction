@@ -4,11 +4,18 @@
 @tailwind components;
 @tailwind utilities;
 
-pre {
+pre:not(.overflow-whee) {
   white-space: pre-wrap;
   font-family: inherit;
 }
 
+body {
+  /* make gradien from white to amber three hundred from top to bottom of page */
+  /* background: linear-gradient(180deg, #fff 0%, rgb(252 211 77) 100%); */
+  background: linear-gradient(180deg, #fff 0%, rgb(253 230 138) 100%);
+  /* background: linear-gradient(180deg, #fff 0%, rgb(254 243 199) 100%); */
+  /* @apply bg-amber-200 */
+}
 
 :root {
   font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
